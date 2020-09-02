@@ -1,0 +1,87 @@
+﻿body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+ }
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+/* styles for removing the background from form */
+.no-color {
+  background-color: white;
+  border-style:none;
+}
+.marquee {
+    text-align: center;
+    color: #fff;
+    background-color: #2982c0;
+    background-image: url(/img/bg.png);
+    padding: 50px 0;
+  
+}
+header.marquee {
+      padding: 150px 0;
+}
+.brand-name {
+    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+}
+h1, .marquee {
+    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.marquee, .brand-name {
+    font-size: 80px;
+}
+.marquee, p {
+    line-height: 1.4;
+    font-size: 16px;
+    font-family: "Open Sans", sans-serif;
+}
+.marquee, .link {
+    text-decoration: none;
+    color: #fff;
+}
+.link:hover {
+    text-decoration: underline;
+    color: #fff;
+}
+.btn-cta {
+    margin: 20px 0 0;
+    padding: 10px 15px;
+    border: 1px solid #fff;
+    background-color: transparent;
+    color: #fff;
+    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+    .btn-cta:hover {
+    background-color: #fff;
+    color: #2982c0;
+    }
+.navbar-brand {
+    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+a {
+    font-family: "Open Sans";
+}
