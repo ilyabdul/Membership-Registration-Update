@@ -1,0 +1,74 @@
+﻿@model Membership_Registration_Update.Models.NewentryTB
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>NewentryTB</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Reference_No)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Reference_No)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date_Printed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date_Printed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date_Approved)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date_Approved)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RegID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Remark)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Remark)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Regstatu.Status_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Regstatu.Status_name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

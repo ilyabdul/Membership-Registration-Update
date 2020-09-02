@@ -1,0 +1,116 @@
+﻿@model IEnumerable<Membership_Registration_Update.Models.NewentryTB>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Home</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="align-self-sm-center accordion bg-transparent ">
+    <table class="table table-bordered table-hover table-condensed" id="Membertable">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Reference_No)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FullName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date_Printed)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date_Approved)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RegID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Remark)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Regstatu.Status_name)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Reference_No)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date_Printed)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date_Approved)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RegID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Remark)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Regstatu.Status_name)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id.ToString().Trim() }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id.ToString().Trim()}) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id.ToString().Trim()})
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Reference_No)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FullName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date_Printed)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date_Approved)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RegID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Remark)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Regstatu.Status_name)
+                </th>
+                <th></th>
+            </tr>
+        </tfoot>
+
+    </table>
+</div>
+
+<link href="//cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="//cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/DataTables/dataTables.bootstrap.js"></script>
+<script>
+    $('#Membertable').DataTable({
+        "aaSorting": [[1, "desc"]],
+
+    });
+
+
+   
+</script>
