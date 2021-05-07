@@ -12,20 +12,19 @@ namespace Membership_Registration_Update.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Regstatu
+    public partial class RevalStatu
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Regstatu()
+        public RevalStatu()
         {
-            this.NewentryTBs = new HashSet<NewentryTB>();
+            this.Revalidations = new HashSet<Revalidation>();
         }
     
-        public string statusId { get; set; }
-        public string Status_name { get; set; }
-        public int Refcode { get; set; }
-        public string Status_name1 { get; set; }
+        public int ID { get; set; }
+        public int Status_Code { get; set; }
+        public string Status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<NewentryTB> NewentryTBs { get; set; }
+        public virtual ICollection<Revalidation> Revalidations { get; set; }
     }
 }

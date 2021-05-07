@@ -4,50 +4,115 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="NewRegistrationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="NewentryTB">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Reference No" Type="nchar" MaxLength="40" Nullable="false" />
-          <Property Name="FullName" Type="nchar" MaxLength="200" Nullable="false" />
-          <Property Name="Date Printed" Type="date" Nullable="false" />
-          <Property Name="Date Approved" Type="date" />
-          <Property Name="RegID" Type="nchar" MaxLength="10" />
-          <Property Name="Status" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="Remark" Type="ntext" />
-        </EntityType>
-        <EntityType Name="Regstatus">
-          <Key>
-            <PropertyRef Name="statusId" />
-          </Key>
-          <Property Name="statusId" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="Status name" Type="nchar" MaxLength="20" Nullable="false" />
-          <Property Name="Refcode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-        </EntityType>
-        <Association Name="FK_NewentryTB_Regstatus">
-          <End Role="Regstatus" Type="Self.Regstatus" Multiplicity="1" />
-          <End Role="NewentryTB" Type="Self.NewentryTB" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Regstatus">
-              <PropertyRef Name="statusId" />
-            </Principal>
-            <Dependent Role="NewentryTB">
-              <PropertyRef Name="Status" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="NewRegistrationModelStoreContainer">
-          <EntitySet Name="NewentryTB" EntityType="Self.NewentryTB" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Regstatus" EntityType="Self.Regstatus" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_NewentryTB_Regstatus" Association="Self.FK_NewentryTB_Regstatus">
-            <End Role="Regstatus" EntitySet="Regstatus" />
-            <End Role="NewentryTB" EntitySet="NewentryTB" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+    <Schema Namespace="NewRegistrationModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="NewRegistrationModelStoreContainer">
+    <EntitySet Name="NewentryTBs" EntityType="NewRegistrationModel.Store.NewentryTBs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Regstatus" EntityType="NewRegistrationModel.Store.Regstatus" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Grades" EntityType="NewRegistrationModel.Store.Grades" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Revalidations" EntityType="NewRegistrationModel.Store.Revalidations" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RevalStatus" EntityType="NewRegistrationModel.Store.RevalStatus" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_NewentryTB_Regstatus" Association="NewRegistrationModel.Store.FK_NewentryTB_Regstatus">
+      <End Role="Regstatus" EntitySet="Regstatus" />
+      <End Role="NewentryTB" EntitySet="NewentryTBs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Revalidation_Grade" Association="NewRegistrationModel.Store.FK_Revalidation_Grade">
+      <End Role="Grade" EntitySet="Grades" />
+      <End Role="Revalidation" EntitySet="Revalidations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Revalidation_RevalStatus" Association="NewRegistrationModel.Store.FK_Revalidation_RevalStatus">
+      <End Role="RevalStatu" EntitySet="RevalStatus" />
+      <End Role="Revalidation" EntitySet="Revalidations" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="NewentryTBs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Reference_No" Type="nchar" Nullable="false" MaxLength="40" />
+    <Property Name="FullName" Type="nchar" Nullable="false" MaxLength="200" />
+    <Property Name="Date_Printed" Type="datetime" Nullable="false" />
+    <Property Name="Date_Approved" Type="datetime" Nullable="true" />
+    <Property Name="RegID" Type="nchar" Nullable="true" MaxLength="10" />
+    <Property Name="Status" Type="nchar" Nullable="false" MaxLength="10" />
+    <Property Name="Remark" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Regstatus">
+    <Key>
+      <PropertyRef Name="statusId" />
+    </Key>
+    <Property Name="statusId" Type="nchar" Nullable="false" MaxLength="10" />
+    <Property Name="Status_name" Type="nchar" Nullable="false" MaxLength="20" />
+    <Property Name="Refcode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Status_name1" Type="nchar" Nullable="false" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Grades">
+    <Key>
+      <PropertyRef Name="Grade1" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GCode" Type="int" Nullable="false" />
+    <Property Name="Grade1" Type="nchar" Nullable="false" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Revalidations">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RegID" Type="nchar" Nullable="false" MaxLength="10" />
+    <Property Name="Surname" Type="nchar" Nullable="false" MaxLength="20" />
+    <Property Name="OtherNames" Type="nchar" Nullable="true" MaxLength="80" />
+    <Property Name="Grade" Type="nchar" Nullable="false" MaxLength="10" />
+    <Property Name="Date_Printed" Type="datetime" Nullable="true" />
+    <Property Name="Date_Approved" Type="datetime" Nullable="true" />
+    <Property Name="Status" Type="nchar" Nullable="false" MaxLength="30" />
+    <Property Name="Remark" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="RevalStatus">
+    <Key>
+      <PropertyRef Name="Status" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Status_Code" Type="int" Nullable="false" />
+    <Property Name="Status" Type="nchar" Nullable="false" MaxLength="30" />
+  </EntityType>
+  <Association Name="FK_NewentryTB_Regstatus">
+    <End Role="Regstatus" Type="NewRegistrationModel.Store.Regstatus" Multiplicity="1" />
+    <End Role="NewentryTB" Type="NewRegistrationModel.Store.NewentryTBs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Regstatus">
+        <PropertyRef Name="statusId" />
+      </Principal>
+      <Dependent Role="NewentryTB">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Revalidation_Grade">
+    <End Role="Grade" Type="NewRegistrationModel.Store.Grades" Multiplicity="1" />
+    <End Role="Revalidation" Type="NewRegistrationModel.Store.Revalidations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Grade">
+        <PropertyRef Name="Grade1" />
+      </Principal>
+      <Dependent Role="Revalidation">
+        <PropertyRef Name="Grade" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Revalidation_RevalStatus">
+    <End Role="RevalStatu" Type="NewRegistrationModel.Store.RevalStatus" Multiplicity="1" />
+    <End Role="Revalidation" Type="NewRegistrationModel.Store.Revalidations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RevalStatu">
+        <PropertyRef Name="Status" />
+      </Principal>
+      <Dependent Role="Revalidation">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="NewRegistrationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -73,6 +138,7 @@
           <Property Name="Status_name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Refcode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="NewentryTBs" Relationship="Self.FK_NewentryTB_Regstatus" FromRole="Regstatus" ToRole="NewentryTB" />
+          <Property Name="Status_name1" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
         </EntityType>
         <Association Name="FK_NewentryTB_Regstatus">
           <End Role="Regstatus" Type="Self.Regstatu" Multiplicity="1" />
@@ -93,39 +159,141 @@
             <End Role="Regstatus" EntitySet="Regstatus" />
             <End Role="NewentryTB" EntitySet="NewentryTBs" />
           </AssociationSet>
+          <EntitySet Name="Grades" EntityType="NewRegistrationModel.Grade" />
+          <EntitySet Name="Revalidations" EntityType="NewRegistrationModel.Revalidation" />
+          <EntitySet Name="RevalStatus" EntityType="NewRegistrationModel.RevalStatu" />
+          <AssociationSet Name="FK_Revalidation_Grade" Association="NewRegistrationModel.FK_Revalidation_Grade">
+            <End Role="Grade" EntitySet="Grades" />
+            <End Role="Revalidation" EntitySet="Revalidations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Revalidation_RevalStatus" Association="NewRegistrationModel.FK_Revalidation_RevalStatus">
+            <End Role="RevalStatu" EntitySet="RevalStatus" />
+            <End Role="Revalidation" EntitySet="Revalidations" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Grade">
+          <Key>
+            <PropertyRef Name="Grade1" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GCode" Type="Int32" Nullable="false" />
+          <Property Name="Grade1" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Revalidations" Relationship="NewRegistrationModel.FK_Revalidation_Grade" FromRole="Grade" ToRole="Revalidation" />
+        </EntityType>
+        <EntityType Name="Revalidation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Surname" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="OtherNames" Type="String" MaxLength="80" FixedLength="true" Unicode="true" />
+          <Property Name="Grade" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Date_Printed" Type="DateTime" Precision="3" />
+          <Property Name="Date_Approved" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Grade1" Relationship="NewRegistrationModel.FK_Revalidation_Grade" FromRole="Revalidation" ToRole="Grade" />
+          <NavigationProperty Name="RevalStatu" Relationship="NewRegistrationModel.FK_Revalidation_RevalStatus" FromRole="Revalidation" ToRole="RevalStatu" />
+        </EntityType>
+        <EntityType Name="RevalStatu">
+          <Key>
+            <PropertyRef Name="Status" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status_Code" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Revalidations" Relationship="NewRegistrationModel.FK_Revalidation_RevalStatus" FromRole="RevalStatu" ToRole="Revalidation" />
+        </EntityType>
+        <Association Name="FK_Revalidation_Grade">
+          <End Type="NewRegistrationModel.Grade" Role="Grade" Multiplicity="1" />
+          <End Type="NewRegistrationModel.Revalidation" Role="Revalidation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grade">
+              <PropertyRef Name="Grade1" />
+            </Principal>
+            <Dependent Role="Revalidation">
+              <PropertyRef Name="Grade" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Revalidation_RevalStatus">
+          <End Type="NewRegistrationModel.RevalStatu" Role="RevalStatu" Multiplicity="1" />
+          <End Type="NewRegistrationModel.Revalidation" Role="Revalidation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RevalStatu">
+              <PropertyRef Name="Status" />
+            </Principal>
+            <Dependent Role="Revalidation">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="NewRegistrationModelStoreContainer" CdmEntityContainer="NewRegistrationEntities1">
-          <EntitySetMapping Name="NewentryTBs">
-            <EntityTypeMapping TypeName="NewRegistrationModel.NewentryTB">
-              <MappingFragment StoreEntitySet="NewentryTB">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Reference_No" ColumnName="Reference No" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="Date_Printed" ColumnName="Date Printed" />
-                <ScalarProperty Name="Date_Approved" ColumnName="Date Approved" />
-                <ScalarProperty Name="RegID" ColumnName="RegID" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Remark" ColumnName="Remark" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Regstatus">
-            <EntityTypeMapping TypeName="NewRegistrationModel.Regstatu">
-              <MappingFragment StoreEntitySet="Regstatus">
-                <ScalarProperty Name="statusId" ColumnName="statusId" />
-                <ScalarProperty Name="Status_name" ColumnName="Status name" />
-                <ScalarProperty Name="Refcode" ColumnName="Refcode" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="NewRegistrationModelStoreContainer" CdmEntityContainer="NewRegistrationEntities1">
+    <EntitySetMapping Name="NewentryTBs">
+      <EntityTypeMapping TypeName="IsTypeOf(NewRegistrationModel.NewentryTB)">
+        <MappingFragment StoreEntitySet="NewentryTBs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Reference_No" ColumnName="Reference_No" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Date_Printed" ColumnName="Date_Printed" />
+          <ScalarProperty Name="Date_Approved" ColumnName="Date_Approved" />
+          <ScalarProperty Name="RegID" ColumnName="RegID" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Regstatus">
+      <EntityTypeMapping TypeName="IsTypeOf(NewRegistrationModel.Regstatu)">
+        <MappingFragment StoreEntitySet="Regstatus">
+          <ScalarProperty Name="statusId" ColumnName="statusId" />
+          <ScalarProperty Name="Status_name" ColumnName="Status_name" />
+          <ScalarProperty Name="Refcode" ColumnName="Refcode" />
+          <ScalarProperty Name="Status_name1" ColumnName="Status_name1" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Grades">
+      <EntityTypeMapping TypeName="IsTypeOf(NewRegistrationModel.Grade)">
+        <MappingFragment StoreEntitySet="Grades">
+          <ScalarProperty Name="Grade1" ColumnName="Grade1" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="GCode" ColumnName="GCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Revalidations">
+      <EntityTypeMapping TypeName="IsTypeOf(NewRegistrationModel.Revalidation)">
+        <MappingFragment StoreEntitySet="Revalidations">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="RegID" ColumnName="RegID" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="OtherNames" ColumnName="OtherNames" />
+          <ScalarProperty Name="Grade" ColumnName="Grade" />
+          <ScalarProperty Name="Date_Printed" ColumnName="Date_Printed" />
+          <ScalarProperty Name="Date_Approved" ColumnName="Date_Approved" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RevalStatus">
+      <EntityTypeMapping TypeName="IsTypeOf(NewRegistrationModel.RevalStatu)">
+        <MappingFragment StoreEntitySet="RevalStatus">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Status_Code" ColumnName="Status_Code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -139,7 +307,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>

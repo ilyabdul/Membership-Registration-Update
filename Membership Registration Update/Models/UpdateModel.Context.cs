@@ -27,5 +27,8 @@ namespace Membership_Registration_Update.Models
     
         public virtual DbSet<NewentryTB> NewentryTBs { get; set; }
         public virtual DbSet<Regstatu> Regstatus { get; set; }
+        public virtual DbSet<Grade> Grades { get; set; }
+        public virtual DbSet<Revalidation> Revalidations { get; set; }
+        public virtual DbSet<RevalStatu> RevalStatus { get; set; }
     }
 }

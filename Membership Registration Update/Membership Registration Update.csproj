@@ -140,10 +140,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Grade.cs">
+      <DependentUpon>UpdateModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\NewentryTB.cs">
       <DependentUpon>UpdateModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Regstatu.cs">
+      <DependentUpon>UpdateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Revalidation.cs">
+      <DependentUpon>UpdateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RevalStatu.cs">
       <DependentUpon>UpdateModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UpdateModel.Context.cs">
@@ -404,6 +413,7 @@
     <Content Include="Models\UpdateModel.edmx.diagram">
       <DependentUpon>UpdateModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Models\UpdateModel.edmx.sql" />
     <Content Include="Models\UpdateModel.tt">
       <DependentUpon>UpdateModel.edmx</DependentUpon>
       <Generator>TextTemplatingFileGenerator</Generator>

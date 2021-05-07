@@ -12,17 +12,19 @@ namespace Membership_Registration_Update.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class NewentryTB
+    public partial class Revalidation
     {
-        public int Id { get; set; }
-        public string Reference_No { get; set; }
-        public string FullName { get; set; }
-        public System.DateTime Date_Printed { get; set; }
-        public Nullable<System.DateTime> Date_Approved { get; set; }
+        public int ID { get; set; }
         public string RegID { get; set; }
+        public string Surname { get; set; }
+        public string OtherNames { get; set; }
+        public string Grade { get; set; }
+        public Nullable<System.DateTime> Date_Printed { get; set; }
+        public Nullable<System.DateTime> Date_Approved { get; set; }
         public string Status { get; set; }
         public string Remark { get; set; }
     
-        public virtual Regstatu Regstatu { get; set; }
+        public virtual Grade Grade1 { get; set; }
+        public virtual RevalStatu RevalStatu { get; set; }
     }
 }

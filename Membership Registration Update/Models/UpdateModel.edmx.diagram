@@ -8,6 +8,11 @@
         <EntityTypeShape EntityType="NewRegistrationModel.NewentryTB" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="NewRegistrationModel.Regstatu" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
         <AssociationConnector Association="NewRegistrationModel.FK_NewentryTB_Regstatus" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="NewRegistrationModel.Grade" Width="1.5" PointX="0.75" PointY="5.625" />
+        <EntityTypeShape EntityType="NewRegistrationModel.Revalidation" Width="1.5" PointX="3" PointY="5" />
+        <EntityTypeShape EntityType="NewRegistrationModel.RevalStatu" Width="1.5" PointX="0.75" PointY="8.625" />
+        <AssociationConnector Association="NewRegistrationModel.FK_Revalidation_Grade" />
+        <AssociationConnector Association="NewRegistrationModel.FK_Revalidation_RevalStatus" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
